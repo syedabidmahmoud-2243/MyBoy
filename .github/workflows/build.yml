@@ -1,0 +1,19 @@
+name: Build GBA Game
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install GBA toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential git make wget
+          git clone --depth 1 https://github.com/devkitPro/pacman.git /tmp/dkp-pacman
+          echo "Build environment setup started"
